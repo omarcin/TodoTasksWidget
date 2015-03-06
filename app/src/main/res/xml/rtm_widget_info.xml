@@ -7,6 +7,6 @@
                     android:initialLayout="@layout/rtm_widget"
                     android:configure="com.oczeretko.rtmwidget.RtmWidgetConfigureActivity"
                     android:resizeMode="horizontal|vertical"
-                    android:widgetCategory="home_screen|keyguard"
+                    android:widgetCategory="home_screen"
                     android:initialKeyguardLayout="@layout/rtm_widget">
 </appwidget-provider>
