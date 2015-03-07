@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.oczeretko.rtmwidget" >
+    package="com.oczeretko.taskswidget" >
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -9,19 +9,19 @@
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
-        <receiver android:name=".RtmWidget" >
+        <receiver android:name="com.oczeretko.taskswidget.TodoWidget" >
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
 
             <meta-data
                 android:name="android.appwidget.provider"
-                android:resource="@xml/rtm_widget_info"
+                android:resource="@xml/widget_info"
                 />
         </receiver>
 
         <service
-            android:name=".RtmWidgetListService"
+            android:name="com.oczeretko.taskswidget.TodoWidgetListService"
             android:enabled="true"
             android:permission="android.permission.BIND_REMOTEVIEWS"
             />

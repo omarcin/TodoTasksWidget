@@ -1,4 +1,4 @@
-package com.oczeretko.rtmwidget;
+package com.oczeretko.taskswidget;
 
 import android.content.Context;
 import android.content.Intent;
@@ -6,17 +6,17 @@ import android.view.View;
 import android.widget.RemoteViews;
 import android.widget.RemoteViewsService;
 
-public class RtmWidgetListRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory {
+public class TodoWidgetListRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory {
     private Context context;
-    private RtmTask[] tasks = new RtmTask[0];
+    private TodoTask[] tasks = new TodoTask[0];
 
-    public RtmWidgetListRemoteViewsFactory(Context context, Intent intent) {
+    public TodoWidgetListRemoteViewsFactory(Context context, Intent intent) {
         this.context = context;
     }
 
     @Override
     public void onDataSetChanged() {
-        tasks = new RtmTasksProvider().fetchTasks();
+        tasks = new TodoTasksProvider().fetchTasks();
     }
 
     @Override
@@ -26,23 +26,23 @@ public class RtmWidgetListRemoteViewsFactory implements RemoteViewsService.Remot
 
     @Override
     public RemoteViews getViewAt(int position) {
-        RtmTask task = tasks[position];
-        RemoteViews rv = new RemoteViews(context.getPackageName(), R.layout.rtm_widget_item);
-        rv.setTextViewText(R.id.rtm_widget_item_title, task.getTitle());
-        rv.setTextViewText(R.id.rtm_widget_item_due, task.getDue());
-        rv.setViewVisibility(R.id.rtm_widget_item_priority_1, View.GONE);
-        rv.setViewVisibility(R.id.rtm_widget_item_priority_2, View.GONE);
-        rv.setViewVisibility(R.id.rtm_widget_item_priority_3, View.GONE);
+        TodoTask task = tasks[position];
+        RemoteViews rv = new RemoteViews(context.getPackageName(), R.layout.widget_item);
+        rv.setTextViewText(R.id.widget_item_title, task.getTitle());
+        rv.setTextViewText(R.id.widget_item_due, task.getDue());
+        rv.setViewVisibility(R.id.widget_item_priority_1, View.GONE);
+        rv.setViewVisibility(R.id.widget_item_priority_2, View.GONE);
+        rv.setViewVisibility(R.id.widget_item_priority_3, View.GONE);
 
         switch(task.getPriority()) {
             case "1" :
-                rv.setViewVisibility(R.id.rtm_widget_item_priority_1, View.VISIBLE);
+                rv.setViewVisibility(R.id.widget_item_priority_1, View.VISIBLE);
                 break;
             case "2" :
-                rv.setViewVisibility(R.id.rtm_widget_item_priority_2, View.VISIBLE);
+                rv.setViewVisibility(R.id.widget_item_priority_2, View.VISIBLE);
                 break;
             case "3" :
-                rv.setViewVisibility(R.id.rtm_widget_item_priority_3, View.VISIBLE);
+                rv.setViewVisibility(R.id.widget_item_priority_3, View.VISIBLE);
                 break;
         }
 

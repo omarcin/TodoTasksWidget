@@ -1,11 +1,11 @@
-package com.oczeretko.rtmwidget;
+package com.oczeretko.taskswidget;
 
-public class RtmTask {
+public class TodoTask {
     private String title;
     private String due;
     private String priority;
 
-    public RtmTask(String title, String due, String priority) {
+    public TodoTask(String title, String due, String priority) {
         this.title = title;
         this.due = due;
         this.priority = priority;

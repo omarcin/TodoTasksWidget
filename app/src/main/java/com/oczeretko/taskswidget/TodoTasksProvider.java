@@ -1,4 +1,4 @@
-package com.oczeretko.rtmwidget;
+package com.oczeretko.taskswidget;
 
 import android.util.Log;
 
@@ -20,29 +20,29 @@ import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xpath.XPathFactory;
 
-public class RtmTasksProvider {
+public class TodoTasksProvider {
 
     private XPath xpath = XPathFactory.newInstance().newXPath();
 
-    public RtmTask[] fetchTasks() {
+    public TodoTask[] fetchTasks() {
         try {
             Document document = fetchXml(Secrets.RssAddress);
             return parseXmlDocument(document);
         } catch (Exception e) {
-            Log.e("RTM", "Exception when fetching tasks", e);
-            return new RtmTask[0];
+            Log.e(TodoTasksProvider.class.getSimpleName(), "Exception when fetching tasks", e);
+            return new TodoTask[0];
         }
     }
 
-    private RtmTask[] parseXmlDocument(Document document) throws XPathExpressionException {
+    private TodoTask[] parseXmlDocument(Document document) throws XPathExpressionException {
 
         String[] titles = nodeListToStrings(evaluateXPath(document, "//*[local-name()='title' and position() > 2]"));
         String[] dueDates = nodeListToStrings(evaluateXPath(document, "//*[@class='rtm_due_value']"));
         String[] priorities = nodeListToStrings(evaluateXPath(document, "//*[@class='rtm_priority_value']"));
 
-        RtmTask[] tasks = new RtmTask[titles.length];
+        TodoTask[] tasks = new TodoTask[titles.length];
         for (int i = 0; i < tasks.length; i++) {
-            tasks[i] = new RtmTask(titles[i], dueDates[i], priorities[i]);
+            tasks[i] = new TodoTask(titles[i], dueDates[i], priorities[i]);
         }
         return tasks;
     }

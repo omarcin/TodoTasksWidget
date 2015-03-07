@@ -5,7 +5,7 @@
                 android:background="@android:color/darker_gray">
 
     <ListView
-        android:id="@+id/rtm_widget_list"
+        android:id="@+id/widget_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="8dp"
